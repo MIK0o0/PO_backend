@@ -1,7 +1,7 @@
 package com.example.SpringSecurity3.controller;
 
 import com.example.SpringSecurity3.dto.RegistrationDetailsDTO;
-import com.example.SpringSecurity3.entity.RegistrationEntity;
+//import com.example.SpringSecurity3.entity.RegistrationEntity;
 import com.example.SpringSecurity3.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,9 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-    @GetMapping("/get/all")
-    public List<RegistrationEntity> getAllRegistrations() {
-        //TODO: implement
-        return null;
-    }
+//    @GetMapping("/get/all")
+//    public List<RegistrationEntity> getAllRegistrations() {
+//        //TODO: implement
+//        return null;
+//    }
 }
