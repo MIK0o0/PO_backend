@@ -33,24 +33,24 @@ public class RoundService {
     private List<FieldDTO> mapToDTO(List<Field> fields, List<UserRound> rounds) {
         List<FieldDTO> roundDTOs = new ArrayList<>();
 
-        for (Field field : fields) {
+        Set<Long> roundIds = rounds.stream()
+                .map(UserRound::getRoundId)
+                .collect(Collectors.toSet());
+
+        fields.forEach(field -> {
             Set<RoundDTO> roundDTOSet = field.getRounds().stream()
-                    .map(round -> {
-                        boolean hasRights = rounds.stream()
-                                .anyMatch(userRound -> userRound.getRoundId().equals(round.getId()));
-                        return new RoundDTO(
-                                round.getId(),
-                                round.getName(),
-                                round.getDate(),
-                                round.getStartTime(),
-                                round.getEndTime(),
-                                hasRights
-                        );
-                    })
+                    .map(round -> new RoundDTO(
+                            round.getId(),
+                            round.getName(),
+                            round.getDate(),
+                            round.getStartTime(),
+                            round.getEndTime(),
+                            roundIds.contains(round.getId())
+                    ))
                     .collect(Collectors.toSet());
 
             roundDTOs.add(new FieldDTO(field.getId(), field.getName(), roundDTOSet));
-        }
+        });
 
         return roundDTOs;
     }
