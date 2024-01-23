@@ -1,5 +1,6 @@
 package com.example.SpringSecurity3.entity.user;
 
+import com.example.SpringSecurity3.dto.UserDetailsDTO;
 import jakarta.persistence.*;
 import lombok.*;
 //import org.hibernate.annotations.Table;
@@ -73,5 +74,15 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UserDetailsDTO toUserDetailsDTO() {
+        return UserDetailsDTO.builder()
+                .id(id)
+                .email(email)
+                .firstName(firstName)
+                .lastName(lastName)
+                .role(role)
+                .build();
     }
 }
