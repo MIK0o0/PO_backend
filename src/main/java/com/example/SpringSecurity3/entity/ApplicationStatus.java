@@ -7,23 +7,23 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "room")
+@Table(name = "application_status")
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Room {
+public class ApplicationStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_room")
+    @Column(name = "id_application_status")
     Long id;
 
-    @Column(name = "number")
-    String number;
+    @Column(name = "name")
+    String name;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "applicationStatus")
     @JsonIgnore
     private List<Application> applications;
 }

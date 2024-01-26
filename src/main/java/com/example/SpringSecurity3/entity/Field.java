@@ -18,6 +18,7 @@ import java.util.Set;
 public class Field {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_field")
     Long id;
 

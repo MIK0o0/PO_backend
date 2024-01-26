@@ -1,10 +1,9 @@
 package com.example.SpringSecurity3.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "building_room")
@@ -16,6 +15,7 @@ import lombok.*;
 public class BuildingRoom {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_building_room")
     Long id;
 
@@ -24,4 +24,5 @@ public class BuildingRoom {
 
     @Column(name = "fk_room")
     Long idRoom;
+
 }

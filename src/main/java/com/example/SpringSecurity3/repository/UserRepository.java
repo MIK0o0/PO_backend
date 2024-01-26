@@ -1,6 +1,7 @@
 package com.example.SpringSecurity3.repository;
 
 //import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.SpringSecurity3.entity.user.Role;
 import com.example.SpringSecurity3.entity.user.User;
 import org.springframework.data.repository.CrudRepository;
 

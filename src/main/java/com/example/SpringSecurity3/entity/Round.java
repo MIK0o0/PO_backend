@@ -19,6 +19,7 @@ import java.util.Date;
 public class Round {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_round")
     Long id;
 

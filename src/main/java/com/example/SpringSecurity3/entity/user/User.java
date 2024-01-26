@@ -1,6 +1,11 @@
 package com.example.SpringSecurity3.entity.user;
 
 import com.example.SpringSecurity3.dto.UserDetailsDTO;
+import com.example.SpringSecurity3.entity.Application;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 //import org.hibernate.annotations.Table;
@@ -18,6 +23,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIncludeProperties({ "id_user", "firstName", "lastName" })
 public class User implements UserDetails {
 
     @Id
@@ -40,6 +46,10 @@ public class User implements UserDetails {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Application> applications;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

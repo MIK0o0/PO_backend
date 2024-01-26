@@ -1,5 +1,7 @@
 package com.example.SpringSecurity3.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,9 +14,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIncludeProperties({ "id", "number" })
 public class Building {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_building")
     Long id;
 
@@ -28,4 +32,7 @@ public class Building {
         inverseJoinColumns = @JoinColumn(name = "fk_room")
     )
     private List<Room> rooms;
+
+    @OneToMany(mappedBy = "building")
+    private List<Application> applications;
 }
