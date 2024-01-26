@@ -19,6 +19,8 @@ public class ApplicationController {
     private final ApplicationService applicationService;
     private final UserService userService;
 
+    //Mikołaj
+
     @GetMapping("/form")
     public ResponseEntity<FormDTO> getBuildings(@RequestHeader("Authorization") String authorizationHeader) {
         if (!userService.hasUserPermission(authorizationHeader)) {
@@ -36,6 +38,8 @@ public class ApplicationController {
         applicationService.saveApplication(applicationDTO, authorizationHeader);
         return ResponseEntity.ok("Application saved");
     }
+
+    //Łukasz
 
     @GetMapping("/all")
     public ResponseEntity<List<Application>> getAllApplications(@RequestHeader("Authorization") String authorizationHeader) {

@@ -21,6 +21,8 @@ public class RoundController {
 
     private final RoundService roundService;
 
+    //Łukasz
+
     @GetMapping("/all")
     public ResponseEntity<List<FieldDTO>> getAllRounds(@RequestHeader("Authorization") String authorizationHeader) {
         return ResponseEntity.ok(roundService.getAllRounds(authorizationHeader));
