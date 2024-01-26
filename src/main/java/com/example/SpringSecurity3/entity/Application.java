@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "application")
@@ -74,5 +75,21 @@ public class Application {
                 ", applicationStatus=" + applicationStatus +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Application that = (Application) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(user, that.user) &&
+                // Include other relevant fields
+                Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, description /* Other fields */);
     }
 }

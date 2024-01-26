@@ -37,7 +37,7 @@ public class ApplicationService {
         applicationRepository.save(application);
     }
 
-    private Application mapDtoToEntity(ApplicationRequestDTO applicationRequestDTO, long userId) {
+    public Application mapDtoToEntity(ApplicationRequestDTO applicationRequestDTO, long userId) {
         return Application.builder()
                 .user(userRepository.findById(userId))
                 .event(eventRepository.findById(applicationRequestDTO.getEventId()))
