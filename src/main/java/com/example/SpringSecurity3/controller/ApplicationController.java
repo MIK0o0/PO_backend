@@ -53,4 +53,31 @@ public class ApplicationController {
         return ResponseEntity.ok(applicationService.getApplicationById(id));
     }
 
+    @PutMapping("/accept/{id}")
+    public ResponseEntity<String> acceptApplication(@RequestHeader("Authorization") String authorizationHeader, @PathVariable long id) {
+        if (!userService.isUserAdmin(authorizationHeader)) {
+            return ResponseEntity.status(403).build();
+        }
+        applicationService.acceptApplication(id);
+        return ResponseEntity.ok("Application accepted");
+    }
+
+    @PutMapping("/reject/{id}")
+    public ResponseEntity<String> rejectApplication(@RequestHeader("Authorization") String authorizationHeader, @PathVariable long id) {
+        if (!userService.isUserAdmin(authorizationHeader)) {
+            return ResponseEntity.status(403).build();
+        }
+        applicationService.rejectApplication(id);
+        return ResponseEntity.ok("Application rejected");
+    }
+
+    @PutMapping("/amend/{id}")
+    public ResponseEntity<String> amendApplication(@RequestHeader("Authorization") String authorizationHeader, @PathVariable long id, @RequestParam long buildingId, @RequestParam long roomId) {
+        if (!userService.isUserAdmin(authorizationHeader)) {
+            return ResponseEntity.status(403).build();
+        }
+        applicationService.amendApplication(id, buildingId, roomId);
+        return ResponseEntity.ok("Application amended");
+    }
+
 }

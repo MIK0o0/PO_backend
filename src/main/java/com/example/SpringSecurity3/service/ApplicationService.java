@@ -53,7 +53,7 @@ public class ApplicationService {
     }
 
     public List<Application> getAllApplications() {
-        List<Application> applications = applicationRepository.findAll();
+        List<Application> applications = applicationRepository.findAllByApplicationStatusEqualsPending();
         applications.forEach(application -> {
             List<Long> conflictingApplicationIds = applicationRepository.findApplicationIdsByDateAndBuildingAndRoomAndTimeRangeAndStatus(
                     application.getDate(),
@@ -71,5 +71,17 @@ public class ApplicationService {
 
     public Application getApplicationById(long id) {
         return applicationRepository.findById(id);
+    }
+
+    public void acceptApplication(long id) {
+        applicationRepository.updateApplicationStatus(id, String.valueOf(ApplicationStatus.ACCEPTED));
+    }
+
+    public void rejectApplication(long id) {
+        applicationRepository.updateApplicationStatus(id, String.valueOf(ApplicationStatus.REJECTED));
+    }
+
+    public void amendApplication(long id, long buildingId, long roomId) {
+        applicationRepository.updateApplicationPlace(id, buildingId, roomId);
     }
 }
