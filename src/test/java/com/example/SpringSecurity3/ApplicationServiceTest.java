@@ -5,6 +5,7 @@ import com.example.SpringSecurity3.dto.ApplicationStatus;
 import com.example.SpringSecurity3.dto.FormDTO;
 import com.example.SpringSecurity3.entity.Application;
 import com.example.SpringSecurity3.entity.Building;
+import com.example.SpringSecurity3.entity.BuildingRoom;
 import com.example.SpringSecurity3.entity.Event;
 import com.example.SpringSecurity3.repository.*;
 import com.example.SpringSecurity3.service.ApplicationService;
@@ -29,6 +30,9 @@ public class ApplicationServiceTest {
     private BuildingRepository buildingRepository;
 
     @Mock
+    private BuildingRoomRepository buildingRoomRepository;
+
+    @Mock
     private EventRepository eventRepository;
 
     @Mock
@@ -46,10 +50,10 @@ public class ApplicationServiceTest {
 
     @Test
     public void testGetForm() {
-        List<Building> expectedBuildings = Arrays.asList(new Building(), new Building());
+        List<BuildingRoom> expectedBuildings = Arrays.asList(new BuildingRoom(), new BuildingRoom());
         List<Event> expectedEvents = Arrays.asList(new Event(), new Event());
 
-        when(buildingRepository.findAll()).thenReturn(expectedBuildings);
+        when(buildingRoomRepository.findAll()).thenReturn(expectedBuildings);
         when(eventRepository.findAll()).thenReturn(expectedEvents);
 
         FormDTO result = applicationService.getForm();

@@ -25,13 +25,13 @@ public class Building {
     @Column(name = "number")
     String number;
 
-    @ManyToMany
-    @JoinTable(
-        name = "building_room",
-        joinColumns = @JoinColumn(name = "fk_building"),
-        inverseJoinColumns = @JoinColumn(name = "fk_room")
-    )
-    private List<Room> rooms;
+//    @ManyToMany
+//    @JoinTable(
+//        name = "building_room",
+//        joinColumns = @JoinColumn(name = "fk_building"),
+//        inverseJoinColumns = @JoinColumn(name = "fk_room")
+//    )
+//    private List<Room> rooms;
 
     @OneToMany(mappedBy = "building")
     private List<Application> applications;

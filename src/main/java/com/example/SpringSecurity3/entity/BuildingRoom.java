@@ -19,10 +19,12 @@ public class BuildingRoom {
     @Column(name = "id_building_room")
     Long id;
 
-    @Column(name = "fk_building")
-    Long idBuilding;
+    @ManyToOne
+    @JoinColumn(name = "fk_building")
+    Building building;
 
-    @Column(name = "fk_room")
-    Long idRoom;
+    @ManyToOne
+    @JoinColumn(name = "fk_room")
+    Room room;
 
 }

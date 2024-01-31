@@ -3,8 +3,11 @@ package com.example.SpringSecurity3.controller;
 import com.example.SpringSecurity3.dto.ApplicationRequestDTO;
 import com.example.SpringSecurity3.dto.FormDTO;
 import com.example.SpringSecurity3.entity.Application;
+import com.example.SpringSecurity3.entity.Views;
 import com.example.SpringSecurity3.service.ApplicationService;
 import com.example.SpringSecurity3.service.UserService;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,7 @@ public class ApplicationController {
     //Mikołaj
 
     @GetMapping("/form")
-    public ResponseEntity<FormDTO> getBuildings(@RequestHeader("Authorization") String authorizationHeader) {
+    public ResponseEntity<FormDTO> getForm(@RequestHeader("Authorization") String authorizationHeader) throws JsonProcessingException {
         if (!userService.hasUserPermission(authorizationHeader)) {
             return ResponseEntity.status(403).build();
         }

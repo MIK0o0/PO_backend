@@ -5,6 +5,7 @@ import com.example.SpringSecurity3.dto.ApplicationStatus;
 import com.example.SpringSecurity3.dto.FormDTO;
 import com.example.SpringSecurity3.entity.Application;
 import com.example.SpringSecurity3.entity.Building;
+import com.example.SpringSecurity3.entity.BuildingRoom;
 import com.example.SpringSecurity3.entity.Event;
 import com.example.SpringSecurity3.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ApplicationService {
 
     private final BuildingRepository buildingRepository;
+    private final BuildingRoomRepository buildingRoomRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
@@ -26,7 +28,7 @@ public class ApplicationService {
 
 
     public FormDTO getForm() {
-        List<Building> buildings = buildingRepository.findAll();
+        List<BuildingRoom> buildings = buildingRoomRepository.findAll();
         List<Event> events = eventRepository.findAll();
         return new FormDTO(events, buildings);
     }
