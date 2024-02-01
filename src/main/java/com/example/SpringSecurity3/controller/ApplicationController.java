@@ -5,7 +5,6 @@ import com.example.SpringSecurity3.dto.FormDTO;
 import com.example.SpringSecurity3.entity.Application;
 import com.example.SpringSecurity3.service.ApplicationService;
 import com.example.SpringSecurity3.service.UserService;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
