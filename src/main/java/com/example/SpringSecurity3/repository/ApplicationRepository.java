@@ -31,11 +31,11 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 
     @Transactional
     @Modifying
-    @Query("UPDATE Application a SET a.applicationStatus.name = :status WHERE a.id = :id")
+    @Query("UPDATE Application SET applicationStatus.name = :status WHERE id = :id")
     void updateApplicationStatus(@Param("id") long id, @Param("status") String status);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Application a SET a.building.id = :buildingId, a.room.id = :roomId WHERE a.id = :id")
+    @Query("UPDATE Application SET building.id = :buildingId, room.id = :roomId WHERE id = :id")
     void updateApplicationPlace(@Param("id") long id, @Param("buildingId") long buildingId, @Param("roomId") long roomId);
 }

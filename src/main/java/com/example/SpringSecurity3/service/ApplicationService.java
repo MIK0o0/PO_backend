@@ -72,7 +72,18 @@ public class ApplicationService {
     }
 
     public Application getApplicationById(long id) {
-        return applicationRepository.findById(id);
+        Application application = applicationRepository.findById(id);
+        List<Long> conflictingApplicationIds = applicationRepository.findApplicationIdsByDateAndBuildingAndRoomAndTimeRangeAndStatus(
+                application.getDate(),
+                application.getBuilding().getId(),
+                application.getRoom().getId(),
+                application.getStartTime(),
+                application.getEndTime()
+        );
+        if (!conflictingApplicationIds.isEmpty()) {
+            application.setHasConflict(true);
+        }
+        return application;
     }
 
     public void acceptApplication(long id) {

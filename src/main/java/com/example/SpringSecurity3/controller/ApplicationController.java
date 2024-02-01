@@ -3,7 +3,6 @@ package com.example.SpringSecurity3.controller;
 import com.example.SpringSecurity3.dto.ApplicationRequestDTO;
 import com.example.SpringSecurity3.dto.FormDTO;
 import com.example.SpringSecurity3.entity.Application;
-import com.example.SpringSecurity3.entity.Views;
 import com.example.SpringSecurity3.service.ApplicationService;
 import com.example.SpringSecurity3.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
